@@ -1,0 +1,60 @@
+{
+  "user": [
+    {
+      "name": "Tomy",
+      "address": "Japan",
+      "email": "tomy@gmail.com",
+      "contact": "1597536482",
+      "id": 2
+    },
+    {
+      "name": "Jane",
+      "address": "Australia",
+      "email": "adam@gmail.com",
+      "contact": "147852369",
+      "id": 3
+    },
+    {
+      "name": "Tomy",
+      "address": "Japan",
+      "email": "tomy@gmail.com",
+      "contact": "1597536482",
+      "id": 2
+    },
+    {
+      "name": "Jane",
+      "address": "Australia",
+      "email": "adam@gmail.com",
+      "contact": "147852369",
+      "id": 3
+    },
+    {
+      "name": "Tomy",
+      "address": "Japan",
+      "email": "tomy@gmail.com",
+      "contact": "1597536482",
+      "id": 2
+    },
+    {
+      "name": "Jane",
+      "address": "Australia",
+      "email": "adam@gmail.com",
+      "contact": "147852369",
+      "id": 3
+    },
+    {
+      "name": "rovan",
+      "email": "Rovanmagdi@gmail.com",
+      "address": "tdfghjhk",
+      "contact": "123584",
+      "id": 4
+    },
+    {
+      "name": "Leanne Grahamghjkl",
+      "email": "Chaim_McDermott@dana.io",
+      "address": "xcfghvjkl",
+      "contact": "126555555",
+      "id": 5
+    }
+  ]
+}
