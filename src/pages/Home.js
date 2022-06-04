@@ -56,6 +56,7 @@ export default function Home() {
   };
   const handleAdd = () => {
     navigate("/addUser");
+    
   };
   const handleEdit = (id) => {
     navigate(`/editUser/${id}`);
