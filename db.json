@@ -1,9 +1,23 @@
 {
   "user": [
     {
-      "name": "Botetos12",
+      "name": "John",
+      "email": "John@april.biz",
+      "address": "Malzya",
+      "contact": "14785369",
+      "id": 4
+    },
+    {
+      "name": "Tomy",
+      "email": "Tomy@april.biz",
+      "address": "Japan",
+      "contact": "14785369",
+      "id": 5
+    },
+    {
+      "name": "Sincere",
       "email": "Sincere@april.biz",
-      "address": "xcfghvjkl",
+      "address": "Asutrlua",
       "contact": "14785369",
       "id": 6
     },
