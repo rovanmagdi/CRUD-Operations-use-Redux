@@ -8,7 +8,12 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteUserFun, loadUsers } from "../redux/actions";
+import {
+  deleteUserFun,
+  getSingleUser,
+  loadUsers,
+  updateUserFun,
+} from "../redux/actions";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 
@@ -43,20 +48,24 @@ export default function Home() {
   }, [dispatch, loadUsers]);
 
   const deleteUser = (id) => {
-    if (window.confirm('Are you sure you want to delete')) {
-
+    if (window.confirm("Are you sure you want to delete")) {
       dispatch(deleteUserFun(id));
+      dispatch(loadUsers());
       console.log(id);
     }
-
-  }
+  };
   const handleAdd = () => {
-    navigate('/addUser');
-  }
+    navigate("/addUser");
+  };
+  const handleEdit = (id) => {
+    navigate(`/editUser/${id}`);
+    dispatch(getSingleUser(id));
+
+    console.log(id);
+  };
   return (
     <div>
-      <Button variant="contained" color="primary"
-        onClick={() => handleAdd()}>
+      <Button variant="contained" color="primary" onClick={() => handleAdd()}>
         Add User
       </Button>
       <TableContainer>
@@ -93,7 +102,11 @@ export default function Home() {
                     >
                       Delete
                     </Button>
-                    <Button variant="contained" color="primary">
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={() => handleEdit(user.id)}
+                    >
                       Edit
                     </Button>
                   </StyledTableCell>

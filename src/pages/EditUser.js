@@ -1,14 +1,19 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { useNavigate } from "react-router-dom";
-import { addUserFun, loadUsers } from "../redux/actions";
-import { useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  addUserFun,
+  getSingleUser,
+  loadUsers,
+  updateUserFun,
+} from "../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function () {
   const navigate = useNavigate();
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   const [state, setState] = useState({
     name: "",
     email: "",
@@ -16,32 +21,41 @@ export default function () {
     contact: "",
   });
   const { name, email, address, contact } = state;
+
   const [error, setError] = useState("");
+  const params = useParams();
+
+  const { user } = useSelector((state) => state.users);
+
+  useEffect(() => {
+    setState(user);
+    // console.log(id);
+  }, [user]);
   const handleBack = () => {
     navigate("/");
   };
+
   const handLeInputChange = (e) => {
     let { name, value } = e.target;
-    console.log(name,value);
     setState({ ...state, [name]: value });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!name || !address || !email || !contact) {
-      setError("please unput all input filed ");
-    }else{
-        dispatch(addUserFun(state))
-        dispatch(loadUsers())
-        
-        navigate("/")
-        setState('')
+      setError("please input all input filed ");
+    } else {
+      dispatch(addUserFun(state));
+      dispatch(updateUserFun(state, params.id));
+
+      console.log(params.id);
+      dispatch(loadUsers());
+
+      navigate("/");
+      setState("");
     }
-   
   };
   return (
-    <div
-     
-    >
+    <div>
       <Button
         variant="contained"
         color="secondary"
@@ -50,13 +64,14 @@ export default function () {
         Go Back
       </Button>
       <br />
-      {error && <h3>{error}</h3>}
+      <h3>Edit User</h3>
+      {error && <h3 style={{ color: "red" }}>{error}</h3>}
       <form onSubmit={handleSubmit} noValidate>
         <TextField
           id="outlined-basic"
           label="Name"
           variant="outlined"
-          value={name}
+          value={name || ""}
           type="text"
           name="name"
           onChange={handLeInputChange}
@@ -66,21 +81,19 @@ export default function () {
           id="outlined-basic"
           label="Email"
           variant="outlined"
-          value={email}
+          value={email || ""}
           name="email"
           type="email"
           onChange={handLeInputChange}
-
         />
         <br />
         <TextField
           id="outlined-basic"
           label="Address"
           variant="outlined"
-          value={address}
+          value={address || ""}
           type="address"
           onChange={handLeInputChange}
-
           name="address"
         />
         <br />
@@ -89,7 +102,7 @@ export default function () {
           id="outlined-basic"
           label="Contact"
           variant="outlined"
-          value={contact}
+          value={contact || ""}
           type="number"
           name="contact"
           onChange={handLeInputChange}
